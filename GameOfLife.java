@@ -94,6 +94,7 @@ public class GameOfLife {
 				counter = 0;
 			}
 		}
+//nächste Generation wird als diese Generation gesetzt.
 		this.CURRENT_GENERATION = NEXT_GENERATION;
 	}
 	
@@ -101,6 +102,7 @@ public class GameOfLife {
 		String lx = Integer.toString(x);
 		String ly = Integer.toString(y);
 		//[Logik] wenn x oder y über seine breite hinausgeht oder kleiner als index 0, wird das jeweils erste oder letzte element zugewiesen:
+//Achtung! Das hier zum String gecastet wird ist unnötig,weil es unten eh passiert gensz die lx und ly ebenfalls unnötig sind Mann kann direkt x y nehmen bzw verändern.
 		if(x == this.MAX) {
 			lx = "0";
 		}
