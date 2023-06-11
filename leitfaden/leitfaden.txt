@@ -28,7 +28,9 @@ vorhanden ist wird der if-block ausgeführt, sonst der else-block. Was wiederrum
 und alle im else-block bleieben "unausgefüllt".
 
 Wie speichern wir das jetzt?
-Am besten in einer HashMap<String, Boolen> der String ist der Key der Boolean der Wert (True = ausgefüllt, False = nicht ausgefüllt).
+Am besten in einer HashMap<String, Boolen> der String ist der Key der Boolean der Wert (True = ausgefüllt, False = nicht ausgefüllt). 
+(Man kann aber auch mehrdemnsionale Listen nutzen, das wäre glaube ich sogar effizienter aber wenn man damit logik Verständnissproleme hat, würde ich ne HashMap empfelen).
+
 Also myMap.put("8:2", true) würde die Koordinate X=8 Y=2 (bzw halt das 9. element in dritter zeile von oben weil wir ja wie gewohnt bei 0 anfanen zu zählen).
 und true würde ja bedeuten das dieses Feld ausgefüllt ist.
 
@@ -37,4 +39,13 @@ myMap.put(x+":"+y, true);
 
 Nach der außeren Forschleife müssen wir dann nur noch die HashMap returnen.
 
-[5]
+[5] Kommen wir zurück zum Konstruktor der Klasse. Hier setzen wir jetzt this.CURRENT_GENERATION = this.create_startset().
+Somit haben wir dann schonmal die Grundvoraussetzungen.
+
+[6] Jetzt brauchen wir noch die Methode make_pane() die aus der HashMap jetzt eine Javafx-Pane mit den ganzen Zellen/Quadraten macht.
+Erstmal initialisieren wir eine leere Pane.
+Dann nehmen wir jetzt wie gewohnt wieder unsere 2 inereinader verschachtelten For schleifen für y und für x.
+Dann legen wir ein neues Rectangle(10,10) an und setzen r.setX(x*11) und r.setY(y*11), also haben wir ein Rechteck was
+10*10 px groß ist , und weil wir dann im setX() bzw setY() ja *11 rechnen haben wir zwischen allen Quadraten am ende 1 px Abstand.
+Jetzt können wir in dieser Methode auf das this.CURRENT_GENERATION zugreifen welches ja die HashMap ist. Und mit if this.CURRENT_GENERATION.get(x*":"+y) else dann 
+die farbe des Quadrats mit r.setFill() entweder auf Ausgefüllt (Blau) oder nicht ausgefüllt (Withe) setzen. 
