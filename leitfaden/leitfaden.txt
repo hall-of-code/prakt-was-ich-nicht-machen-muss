@@ -1,0 +1,40 @@
+Dies ist n Leitfaden wie man ein Game of Life Stück für Stück implementieren kann in Javafx.
+--------------------------------------------------------------------------------------------
+Ich nutze jetzt keinen Code hier also es soll nur als Übersicht dienen selber es in Funktionen
+und Klassen zu implementieren und auch selber nachdenken zu müssen wie man was macht.
+
+[1] Erstmal sollte man eine Main.java erstellen mit dem Üblichen Javafx setup. Hier erzeugen wir jetzt
+eine BorderPane - in die wir oben mit .setTop() zB einen Button setzen der den Namen "Next" hat.
+
+[2] Wenn wir jetzt den Programmcode ausführen und an alles passend mit scene() und so gesetzt hat hat man
+jetzt also schonmal ein Fenster mit einem Button oben wo drin steht "Next".
+
+[3] Jetzt erstellen wir eine neue Datei/Klasse "GameOfLife.java", darein kommen jetzt nach und nach ein par
+coole Methoden.
+-> Der Konstruktor nimmt ein int-parameter "max" der das Feld bestimmt also ist der Wert 10 sollte das Feld 10*10
+groß sein. Das packen wir jetzt in eine this.MAX variable.
+
+[4] Das Game of Life muss ja irgendeinen startpunkt haben, also wenn man das Programm startet welche Felder sind dann ausgefüllt?
+-> Wir erstellen ein Startset, dafür kann man ne neue Methode create_startset() erstellen. Dadrin können wir jetzt eine
+lokale variable erstellen die ein Array ist welches alle Koordinaten in folgendem Format beinhaltet "x:y" also zB "12:26" oder so.
+
+Jetzt verschachteln wir zwei for schleifen die erste zählt von y = 0 bis y < this.MAX (wenn wir bei 0 anfangen ist die maximale koordinate this.MAX - 1).
+Die zweite tut das selbe nur mit x. Das bedeutet logischerweise haben wir dann ein konstrukt welches jede koordinate abdeckt, also erst ist y = 0 dann
+durchlaufen wir einmal die "x"-for schleife von 0-9 (wenn this.MAX = z.B. 10 ist) und dann wird y++ gerechnet also haben wir y=1 und x wieder von 0-9.
+
+Heißt wenn wir jetzt einen if else block darein tun, können wir für jede mögliche coordinate einmal überprüfen ob sie im Startset-array ist. 
+(Tipp: Array in eine List umwandeln, und dann mit if(meine_liste.contains(x+":"+y) fortfahren) das bedeutet wenn die Coordinate im Array
+vorhanden ist wird der if-block ausgeführt, sonst der else-block. Was wiederrum bedeutet alle elemente im if block sind "ausgefüllt" 
+und alle im else-block bleieben "unausgefüllt".
+
+Wie speichern wir das jetzt?
+Am besten in einer HashMap<String, Boolen> der String ist der Key der Boolean der Wert (True = ausgefüllt, False = nicht ausgefüllt).
+Also myMap.put("8:2", true) würde die Koordinate X=8 Y=2 (bzw halt das 9. element in dritter zeile von oben weil wir ja wie gewohnt bei 0 anfanen zu zählen).
+und true würde ja bedeuten das dieses Feld ausgefüllt ist.
+
+Mit dem Wissen können wir jetzt ja in dem If Block wie folgt die Koordinate auf true setzen und im Else Block dann auf false.
+myMap.put(x+":"+y, true);
+
+Nach der außeren Forschleife müssen wir dann nur noch die HashMap returnen.
+
+[5]
