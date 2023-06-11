@@ -37,35 +37,7 @@ public class Main extends Application {
 				border_pane.setBottom(instance.pane_from_current());
 			}
 		});
-		border_pane.setLeft(b); //button oben hinzufügen
-		
-		//plus 10 generationen button
-				Button b10 = new Button("Next x10");
-				b10.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent arg0) {
-						for(int i = 0; i <= 10; i++) {
-							instance.next_generation();
-							border_pane.setBottom(instance.pane_from_current());
-						}
-					}
-					
-				});
-				border_pane.setCenter(b10);
-				
-		//plus 10 generationen button
-				Button b50 = new Button("Next x50");
-				b50.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent arg0) {
-						for(int i = 0; i <= 50; i++) {
-							instance.next_generation();
-							border_pane.setBottom(instance.pane_from_current());
-						}
-					}
-					
-				});
-				border_pane.setRight(b50);		
+		border_pane.setLeft(b); //button oben hinzufügen		
 				
 		var scene = new Scene(border_pane, 550, 580);
 		primaryStage.setScene(scene);
